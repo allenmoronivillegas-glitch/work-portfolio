@@ -5,7 +5,7 @@ Personal portfolio hosted on GitHub Pages.
 ## Files
 - `index.html` - the website (design, sections, form logic)
 - `site-data.js` - **the file you edit** for projects, achievements and EmailJS keys
-- `.github/workflows/deploy-pages.yml` - publishes the site when you push to `main`
+- GitHub Pages publishes the site from the `main` branch root (`/(root)`) when the branch is updated.
 
 ## Add or edit a project
 Open `site-data.js`, find `PROJECTS`, and copy one `{ ... }` block. Fill in the fields (leave `""` for a placeholder), keep the comma between blocks. Delete a block to remove a project. Put screenshots in an `images/` folder and set `image: "images/name.png"`.
