@@ -23,7 +23,7 @@ header .wrap{display:flex;justify-content:space-between;align-items:center}
 header nav{display:flex;gap:6px;background:rgba(0,0,0,.7);backdrop-filter:blur(12px);border:1px solid var(--line);padding:6px;border-radius:999px;font-size:.92rem;font-weight:500}
 header nav a{text-decoration:none;padding:7px 15px;border-radius:999px;color:var(--muted);transition:background .2s,color .2s}
 header nav a:hover{background:rgba(255,255,255,.1);color:var(--ink)}
-@media(max-width:620px){header nav a:nth-child(-n+2){display:none}}
+@media(max-width:620px){header nav a:nth-child(-n+4){display:none}}
 .hero{min-height:88vh;min-height:88svh;display:flex;align-items:center;position:relative;overflow:hidden;padding:110px 0 70px;--mx:50%;--my:40%}
 .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(520px circle at var(--mx) var(--my),rgba(255,176,32,.2),transparent 70%)}
 .blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.28;animation:float 14s ease-in-out infinite}
@@ -102,6 +102,31 @@ form{display:grid;gap:16px;padding:28px;border-radius:20px;border:1px solid var(
 form button{font:700 .95rem var(--b);color:#000;background:linear-gradient(120deg,var(--v),var(--p));border:0;border-radius:12px;padding:13px 22px;cursor:pointer;transition:transform .2s,box-shadow .2s;justify-self:start}
 form button:hover{transform:translateY(-2px);box-shadow:0 10px 26px -10px var(--v)}
 .note{margin:0;font-size:.85rem;color:var(--muted);min-height:1.2em}
+.prj .card{display:flex;flex-direction:column;gap:14px}
+.shot{aspect-ratio:16/10;border-radius:14px;border:1px dashed var(--line);background:radial-gradient(circle at 30% 20%,rgba(255,176,32,.14),transparent 60%),#0a0a0a;display:grid;place-items:center;text-align:center;color:var(--muted);font-size:.85rem;overflow:hidden}
+.shot svg{width:30px;height:30px;fill:none;stroke:var(--v);stroke-width:1.6;display:block;margin:0 auto 6px}
+.shot img{width:100%;height:100%;object-fit:cover;display:block}
+.pt{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.prj .card h3{margin:0}
+.sm{color:var(--muted);font-size:.85rem;margin:2px 0 0}
+.tag{flex:none;font-size:.78rem;font-weight:700;padding:4px 11px;border-radius:999px;border:1px solid var(--line);color:var(--v);white-space:nowrap}
+.tag.mu{color:var(--muted);font-weight:500}
+.pd{margin:0;color:#d6d6d6;font-size:.95rem}.pd.mu,.ad.mu{color:var(--muted);font-style:italic}
+.pl{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto}
+.pl a{font-size:.88rem;font-weight:600;text-decoration:none;padding:8px 14px;border-radius:10px;border:1px solid var(--line);transition:border-color .2s,transform .2s}
+.pl a:hover{border-color:var(--v);transform:translateY(-2px)}
+.flt{margin-bottom:22px}
+.flt button{font:500 .88rem var(--b);color:var(--ink);padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid var(--line);cursor:pointer;transition:background .2s,color .2s}
+.flt button[aria-pressed="true"]{background:var(--v);color:#000;border-color:var(--v);font-weight:700}
+.ach{display:flex;flex-direction:column;gap:8px}
+.ach.ph{border-style:dashed}
+.ach .dt{color:var(--v);font-weight:700;font-size:.85rem}
+.ach .cat{color:var(--muted);font-size:.8rem}
+.ach h3{margin:0!important;font-size:1.02rem!important}
+.ad{margin:0;color:#d6d6d6;font-size:.93rem}
+.ach img{width:100%;border-radius:12px;border:1px solid var(--line);display:block}
+.ach .pl{margin-top:6px}
+.note.ok{color:#4ade80}.note.err{color:#ff8f8f}.note a{color:inherit;font-weight:700}
 footer{border-top:1px solid var(--line);padding:30px 0 44px;color:var(--muted);font-size:.9rem;text-align:center}
 .rv{opacity:0;transform:translateY(34px) scale(.98);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1)}.rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){*,*::before{animation:none!important;transition:none!important}h1 .ch{transform:none}.rv{opacity:1;transform:none}.tl .fill{transform:none}h1 .ln:last-child{color:var(--p)}html{scroll-behavior:auto}}
@@ -110,7 +135,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 44px;color:var(--muted);f
 <body>
 <div id="bar"></div>
 <header><div class="wrap"><a class="logo" href="#top">AV.</a>
-<nav aria-label="Main"><a href="#work">Experience</a><a href="#toolkit">Toolkit</a><a href="https://github.com/allenmoronivillegas-glitch" target="_blank" rel="noopener">GitHub</a><a href="#contact">Contact</a></nav></div></header>
+<nav aria-label="Main"><a href="#work">Experience</a><a href="#projects">Projects</a><a href="#toolkit">Toolkit</a><a href="#achievements">Achievements</a><a href="https://github.com/allenmoronivillegas-glitch" target="_blank" rel="noopener">GitHub</a><a href="#contact">Contact</a></nav></div></header>
 
 <main id="top">
 <div class="hero" id="hero">
@@ -146,6 +171,11 @@ footer{border-top:1px solid var(--line);padding:30px 0 44px;color:var(--muted);f
 <ul><li>Researched mortgage companies and collected employee names, titles, emails, phone numbers and LinkedIn profiles.</li><li>Built and verified lead lists through hand research and data scraping.</li><li>Kept lead databases accurate in Google Sheets and Excel.</li></ul></article>
 </div></div></section>
 
+<section id="projects" style="padding-top:24px"><div class="wrap rv">
+<h2>Projects</h2><p class="sub">Applications I'm building. Details, screenshots and links are added as each one is ready.</p>
+<div class="cols prj" id="projects-grid"></div>
+</div></section>
+
 <section id="toolkit" style="padding-top:24px"><div class="wrap rv">
 <h2>Toolkit</h2><p class="sub">Tools I use daily, and the languages I'm building with.</p>
 <div class="cols">
@@ -157,6 +187,12 @@ footer{border-top:1px solid var(--line);padding:30px 0 44px;color:var(--muted);f
 <div class="card"><h3>AI assistants</h3><div class="chips"><span>ChatGPT</span><span>Gemini</span><span>Claude</span></div></div>
 </div></div></section>
 
+<section id="achievements" style="padding-top:24px"><div class="wrap rv">
+<h2>Achievements</h2><p class="sub">Milestones from my work so far, with space for certificates and finished projects.</p>
+<div class="chips flt" id="ach-filter" role="group" aria-label="Filter achievements"></div>
+<div class="cols" id="ach-grid"></div>
+</div></section>
+
 <section style="padding-top:24px"><div class="wrap rv">
 <div class="edu"><h3>Bachelor of Science in Information Technology</h3><p>University of Mindanao Digos College · Digos, Philippines</p></div>
 </div></section>
@@ -167,15 +203,18 @@ footer{border-top:1px solid var(--line);padding:30px 0 44px;color:var(--muted);f
 <div class="links"><a class="gh" href="mailto:allenmoronivillegas@gmail.com"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 011 1v12a1 1 0 01-1 1H3a1 1 0 01-1-1V6a1 1 0 011-1zm1.6 2L12 12.6 19.4 7H4.6zM20 8.9l-8 6-8-6V17h16V8.9z"/></svg>allenmoronivillegas@gmail.com</a>
 <a class="gh" href="https://github.com/allenmoronivillegas-glitch" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>allenmoronivillegas-glitch on GitHub</a></div></div>
 <form id="cf" novalidate>
-<div class="f"><label for="n">Your name</label><input id="n" name="n" type="text" autocomplete="name" placeholder="Juan Dela Cruz" required></div>
-<div class="f"><label for="e">Your email</label><input id="e" name="e" type="email" autocomplete="email" placeholder="you@company.com" required></div>
-<div class="f"><label for="m">Message</label><textarea id="m" name="m" rows="5" placeholder="Tell me about the role or project" required></textarea></div>
+<input type="hidden" name="access_key" value="66056af4-2412-4f30-936d-703bb0d35693">
+<div class="f"><label for="n">Your name</label><input id="n" name="name" type="text" autocomplete="name" placeholder="Juan Dela Cruz" required></div>
+<div class="f"><label for="e">Your email</label><input id="e" name="email" type="email" autocomplete="email" placeholder="you@company.com" required></div>
+<div class="f"><label for="s">Subject</label><input id="s" name="subject" type="text" placeholder="What is this about?"></div>
+<div class="f"><label for="m">Message</label><textarea id="m" name="message" rows="5" placeholder="Tell me about the role or project" required></textarea></div>
 <button type="submit">Send message</button>
 <p class="note" id="note" role="status"></p>
 </form></div></div></section>
 </main>
 <footer>Allen Moroni T. Villegas · Digos, Philippines · <a href="https://github.com/allenmoronivillegas-glitch" target="_blank" rel="noopener">GitHub</a></footer>
 
+<script src="site-data.js"></script>
 <script>
 (function(){
 var R=matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -191,12 +230,62 @@ var w=roles[ri];ci+=del?-1:1;el.textContent=w.slice(0,ci);
 var d=del?35:75;
 if(!del&&ci===w.length){del=true;d=1500}else if(del&&ci===0){del=false;ri=(ri+1)%roles.length;d=300}
 setTimeout(tick,d)})();
-var cf=document.getElementById("cf"),nt=document.getElementById("note");
-cf.addEventListener("submit",function(ev){ev.preventDefault();
-var n=cf.n.value.trim(),e=cf.e.value.trim(),m=cf.m.value.trim();
-if(!n||!m||!/^\S+@\S+\.\S+$/.test(e)){nt.textContent="Please fill in your name, a valid email and a message.";return}
-location.href="mailto:allenmoronivillegas@gmail.com?subject="+encodeURIComponent("Portfolio message from "+n)+"&body="+encodeURIComponent(m+"\n\nFrom: "+n+" ("+e+")");
-nt.textContent="Your email app should open with the message ready to send."});
+function h(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+function lnk(l,u,pri){var a=h("a",null,l);a.href=u;a.target="_blank";a.rel="noopener";return a}
+var pg=document.getElementById("projects-grid");
+PROJECTS.forEach(function(p){
+var c=h("article","card"),sh=h("div","shot");
+if(p.image){var im=h("img");im.src=p.image;im.alt=p.name+" screenshot";im.loading="lazy";sh.appendChild(im)}
+else{sh.innerHTML='<div><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>Screenshot coming soon</div>'}
+var top=h("div","pt"),L=h("div"),st=h("span","tag"+(p.status?"":" mu"),p.status||"Status to be added");
+L.appendChild(h("h3",null,p.name));if(p.type)L.appendChild(h("p","sm",p.type));
+top.appendChild(L);top.appendChild(st);
+c.appendChild(sh);c.appendChild(top);
+c.appendChild(h("p","pd"+(p.description?"":" mu"),p.description||"Short description coming soon."));
+var ch=h("div","chips");
+if(p.tech&&p.tech.length)p.tech.forEach(function(t){ch.appendChild(h("span",null,t))});else ch.appendChild(h("span",null,"Technologies to be added"));
+c.appendChild(ch);
+if(p.github||p.demo){var pl=h("div","pl");if(p.github)pl.appendChild(lnk("GitHub",p.github));if(p.demo)pl.appendChild(lnk("Live demo",p.demo));c.appendChild(pl)}
+else c.appendChild(h("p","sm","Links coming soon"));
+pg.appendChild(c)});
+var ag=document.getElementById("ach-grid"),af=document.getElementById("ach-filter"),cur="All";
+function drawAch(){ag.textContent="";
+ACHIEVEMENTS.forEach(function(a){if(cur!=="All"&&a.category!==cur)return;
+var c=h("article","card ach"+(a.placeholder?" ph":""));
+c.appendChild(h("span","dt",a.date||"Year"));c.appendChild(h("h3",null,a.title||"Add a title"));
+c.appendChild(h("span","cat",a.category));
+c.appendChild(h("p","ad"+(a.description?"":" mu"),a.description||"Add a short description."));
+if(a.image){var im=h("img");im.src=a.image;im.alt=a.title+" certificate";im.loading="lazy";c.appendChild(im)}
+if(a.link){var pl=h("div","pl");pl.appendChild(lnk(a.linkLabel||"View details",a.link));c.appendChild(pl)}
+ag.appendChild(c)});
+[].forEach.call(af.children,function(b){b.setAttribute("aria-pressed",b.dataset.v===cur)})}
+["All"].concat(ACHIEVEMENT_CATEGORIES).forEach(function(v){var b=h("button",null,v);b.type="button";b.dataset.v=v;b.addEventListener("click",function(){cur=v;drawAch()});af.appendChild(b)});
+drawAch();
+var cf=document.getElementById("cf"),nt=document.getElementById("note"),btn=cf.querySelector('button[type="submit"]'),btnLabel=btn.textContent,sending=false;
+var EJ=EMAILJS_CONFIG,useEJ=[EJ.publicKey,EJ.serviceId,EJ.templateId].every(function(v){return v&&v.indexOf("YOUR_")!==0});
+function say(msg,cls,fb){nt.textContent=msg;nt.className="note"+(cls?" "+cls:"");
+if(fb){nt.appendChild(document.createTextNode(" You can also "));var a=h("a",null,"email me directly");a.href="mailto:allenmoronivillegas@gmail.com";nt.appendChild(a);nt.appendChild(document.createTextNode("."))}}
+async function viaEmailJS(v){
+var r=await fetch("https://api.emailjs.com/api/v1.0/email/send",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({service_id:EJ.serviceId,template_id:EJ.templateId,user_id:EJ.publicKey,template_params:{from_name:v.name,reply_to:v.email,subject:v.subject,message:v.message}})});
+if(!r.ok)throw new Error((await r.text())||"EmailJS request failed")}
+async function viaWeb3Forms(){
+var r=await fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(Object.fromEntries(new FormData(cf)))});
+var j=await r.json();if(!r.ok||!j.success)throw new Error("Web3Forms submission failed")}
+cf.addEventListener("submit",async function(ev){
+ev.preventDefault();if(sending)return;
+var n=document.getElementById("n"),e=document.getElementById("e"),m=document.getElementById("m"),s=document.getElementById("s");
+var v={name:n.value.trim(),email:e.value.trim(),subject:(s.value.trim()||"New Portfolio Contact"),message:m.value.trim()};
+if(!v.name||!v.email||!v.message){say("Please fill in your name, email and message.","err");return}
+if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email)||!e.checkValidity()){say("Please enter a valid email address.","err");e.focus();return}
+n.value=v.name;e.value=v.email;m.value=v.message;
+sending=true;btn.disabled=true;btn.textContent="Sending...";cf.setAttribute("aria-busy","true");say("");
+try{
+if(useEJ)await viaEmailJS(v);else await viaWeb3Forms();
+say("Message sent successfully! I'll get back to you as soon as I can.","ok");cf.reset()
+}catch(err){
+say("Sorry, your message could not be sent.","err",true)
+}finally{sending=false;btn.disabled=false;btn.textContent=btnLabel;cf.removeAttribute("aria-busy")}
+});
 var hero=document.getElementById("hero");
 if(!R)hero.addEventListener("pointermove",function(e){var r=hero.getBoundingClientRect();hero.style.setProperty("--mx",(e.clientX-r.left)+"px");hero.style.setProperty("--my",(e.clientY-r.top)+"px")});
 if(!R&&matchMedia("(hover:hover)").matches)document.querySelectorAll(".card").forEach(function(c){
