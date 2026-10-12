@@ -10,8 +10,12 @@ Personal portfolio hosted on GitHub Pages.
 ## Add or edit a project
 Open `site-data.js`, find `PROJECTS`, and copy one `{ ... }` block. Fill in the fields (leave `""` for a placeholder), keep the comma between blocks. Delete a block to remove a project. Put screenshots in an `images/` folder and set `image: "images/name.png"`.
 
-## Add or edit an achievement
-Same idea with `ACHIEVEMENTS`. `category` must match one of the names in `ACHIEVEMENT_CATEGORIES`. Remove `placeholder: true` once you add real details. Use `link` for a certificate or verification URL and `image` for a certificate picture.
+## Add your badges and certificates
+All Achievements cards are placeholders until you fill them in. Open `site-data.js`, find `ACHIEVEMENTS`, and fill one block:
+- `badge: "images/badges/name.png"` for a round badge, or `image: "images/certs/name.jpg"` for a certificate picture (create those folders in the repo and upload the files).
+- `title`, `description` and `date` for the text.
+- `link` for an optional verification URL (leave `""` to keep the placeholder).
+Copy a block to add more, delete a block to remove one. Leave a field as `""` to keep its placeholder.
 
 ## Set up EmailJS (contact form)
 1. Create a free account at https://www.emailjs.com and log in.

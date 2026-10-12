@@ -53,55 +53,22 @@ const PROJECTS = [
   }
 ];
 
-/* ---- 3. Achievements ----
-   category must be one of the names in ACHIEVEMENT_CATEGORIES.
-   date : a year or date, e.g. "2025" or "Mar 2025"
-   link : certificate or verification URL ("" = no button)
-   image: certificate image path or URL ("" = none)
-   placeholder: true shows a dashed "add yours here" card */
-const ACHIEVEMENT_CATEGORIES = [
-  "Professional achievements",
-  "Career milestones",
-  "Completed projects",
-  "Certificates and training",
-  "Technical accomplishments"
-];
-
+/* ---- 3. Achievements (all placeholders until you add your own) ----
+   type: "badge"       -> round badge image + details
+         "certificate" -> certificate image + details
+         "details"     -> text-only card
+   badge / image: path or URL of your badge or certificate picture,
+                  e.g. "images/badges/my-badge.png" ("" = placeholder)
+   title, description, date: your text ("" = placeholder)
+   link     : certificate verification URL ("" = placeholder, optional)
+   linkLabel: button text, e.g. "Verify certificate" ("" = default)
+   To add one: copy a { ... } block, paste it with a comma between blocks.
+   To remove one: delete its { ... } block. */
 const ACHIEVEMENTS = [
-  {
-    category: "Professional achievements",
-    title: "Handled 200+ orders every day",
-    description: "Processed and managed customer orders in Amazon Seller Central as Order Processor for Pawblefy / Marblefy.",
-    date: "2024 - 2026", link: "", linkLabel: "", image: ""
-  },
-  {
-    category: "Career milestones",
-    title: "Started remote client work",
-    description: "Began as a Lead Generation & Data Research Specialist at Virtual Pal.",
-    date: "Feb 2023", link: "", linkLabel: "", image: ""
-  },
-  {
-    category: "Career milestones",
-    title: "Moved into e-commerce operations",
-    description: "Started as Order Processor, working with Amazon Seller Central.",
-    date: "Dec 2024", link: "", linkLabel: "", image: ""
-  },
-  {
-    category: "Technical accomplishments",
-    title: "Built verified lead lists with research and scraping tools",
-    description: "Used LinkedIn Sales Navigator, Apollo, RocketReach and Octoparse to source and verify prospect data.",
-    date: "2023 - 2025", link: "", linkLabel: "", image: ""
-  },
-  {
-    category: "Completed projects",
-    title: "Your completed project",
-    description: "Add a short description of a finished project.",
-    date: "Year", link: "", linkLabel: "", image: "", placeholder: true
-  },
-  {
-    category: "Certificates and training",
-    title: "Your certificate or training",
-    description: "Add the course or certificate name and what it covered.",
-    date: "Year", link: "", linkLabel: "View certificate", image: "", placeholder: true
-  }
+  { type: "badge",       badge: "", image: "", title: "", description: "", date: "", link: "", linkLabel: "" },
+  { type: "badge",       badge: "", image: "", title: "", description: "", date: "", link: "", linkLabel: "" },
+  { type: "certificate", badge: "", image: "", title: "", description: "", date: "", link: "", linkLabel: "" },
+  { type: "certificate", badge: "", image: "", title: "", description: "", date: "", link: "", linkLabel: "" },
+  { type: "details",     badge: "", image: "", title: "", description: "", date: "", link: "", linkLabel: "" },
+  { type: "details",     badge: "", image: "", title: "", description: "", date: "", link: "", linkLabel: "" }
 ];
