@@ -10,9 +10,9 @@
    Until you replace all three YOUR_... values, the contact form keeps
    using your existing Web3Forms setup. */
 const EMAILJS_CONFIG = {
-  publicKey:  "YOUR_EMAILJS_PUBLIC_KEY",
-  serviceId:  "YOUR_EMAILJS_SERVICE_ID",
-  templateId: "YOUR_EMAILJS_TEMPLATE_ID"
+  publicKey:  "HZKiXCtLuEoypVADK",
+  serviceId:  "service_m4j3e2f",
+  templateId: "template_wa9pj6d"
 };
 
 /* ---- 2. Projects ----
