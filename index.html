@@ -133,9 +133,10 @@ form button:hover{transform:translateY(-2px);box-shadow:0 10px 26px -10px var(--
 .lk{font-size:.85rem;color:var(--muted);border:1px dashed var(--line);border-radius:10px;padding:7px 12px;align-self:flex-start}
 .note.ok{color:#4ade80}.note.err{color:#ff8f8f}.note a{color:inherit;font-weight:700}
 footer{border-top:1px solid var(--line);padding:30px 0 44px;color:var(--muted);font-size:.9rem;text-align:center}
-.rv{opacity:0;transform:translateY(34px) scale(.98);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1)}.rv.in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){*,*::before{animation:none!important;transition:none!important}h1 .ch{transform:none}.rv{opacity:1;transform:none}.tl .fill{transform:none}h1 .ln:last-child{color:var(--p)}html{scroll-behavior:auto}}
+.js .rv{opacity:0;transform:translateY(34px) scale(.98);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1)}.js .rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*,*::before{animation:none!important;transition:none!important}h1 .ch{transform:none}.js .rv{opacity:1;transform:none}.tl .fill{transform:none}h1 .ln:last-child{color:var(--p)}html{scroll-behavior:auto}}
 </style>
+<script>document.documentElement.classList.add("js");setTimeout(function(){[].forEach.call(document.querySelectorAll(".rv"),function(e){e.classList.add("in")})},3500)</script>
 </head>
 <body>
 <div id="bar"></div>
@@ -176,8 +177,15 @@ footer{border-top:1px solid var(--line);padding:30px 0 44px;color:var(--muted);f
 <ul><li>Researched mortgage companies and collected employee names, titles, emails, phone numbers and LinkedIn profiles.</li><li>Built and verified lead lists through hand research and data scraping.</li><li>Kept lead databases accurate in Google Sheets and Excel.</li></ul></article>
 </div></div></section>
 
+<!-- ==================================================================
+     PROJECTS SECTION
+     Cards are generated from the PROJECTS list in site-data.js.
+     Put project screenshots in images/projects/ and set
+     image: "images/projects/hopegive.png" in site-data.js.
+     ================================================================== -->
 <section id="projects" style="padding-top:24px"><div class="wrap rv">
 <h2>Projects</h2><p class="sub">Applications I'm building. Details, screenshots and links are added as each one is ready.</p>
+<!-- PROJECT CARDS APPEAR HERE (generated from site-data.js) -->
 <div class="cols prj" id="projects-grid"></div>
 </div></section>
 
@@ -192,8 +200,18 @@ footer{border-top:1px solid var(--line);padding:30px 0 44px;color:var(--muted);f
 <div class="card"><h3>AI assistants</h3><div class="chips"><span>ChatGPT</span><span>Gemini</span><span>Claude</span></div></div>
 </div></div></section>
 
+<!-- ==================================================================
+     ACHIEVEMENTS SECTION  (badges, certificates, milestones)
+     You do NOT need to edit this HTML. The cards below are created
+     automatically from the ACHIEVEMENTS list in site-data.js.
+       1) Upload badge pictures to    images/badges/
+       2) Upload certificate pictures to images/certs/
+       3) Open site-data.js > ACHIEVEMENTS and set badge/image to the file
+          path (example: badge: "images/badges/my-badge.png")
+     ================================================================== -->
 <section id="achievements" style="padding-top:24px"><div class="wrap rv">
 <h2>Achievements</h2><p class="sub">Badges, certificates and milestones will be added here.</p>
+<!-- ACHIEVEMENT CARDS APPEAR HERE (generated from site-data.js) -->
 <div class="cols" id="ach-grid"></div>
 </div></section>
 
@@ -219,6 +237,16 @@ footer{border-top:1px solid var(--line);padding:30px 0 44px;color:var(--muted);f
 <footer>Allen Moroni T. Villegas · Digos, Philippines · <a href="https://github.com/allenmoronivillegas-glitch" target="_blank" rel="noopener">GitHub</a></footer>
 
 <script src="site-data.js"></script>
+<script>
+/* Safety net: if site-data.js was not uploaded next to index.html, show the placeholder
+   cards anyway so the page is never empty. Upload site-data.js to your repo to edit them. */
+(function(){var w=window,p={type:"details",badge:"",image:"",title:"",description:"",date:"",link:"",linkLabel:""};
+if(typeof PROJECTS==="undefined"){console.warn("site-data.js not found - using placeholders. Upload it next to index.html.");
+w.PROJECTS=[{name:"HopeGive App",type:"Android / mobile application",description:"",image:"",tech:["Android"],status:"",github:"",demo:""},{name:"UlamShare App",type:"Mobile application",description:"",image:"",tech:[],status:"",github:"",demo:""},{name:"Future Project",type:"Your next application",description:"",image:"",tech:[],status:"",github:"",demo:""}]}
+if(typeof ACHIEVEMENTS==="undefined"){w.ACHIEVEMENTS=[Object.assign({},p,{type:"badge"}),Object.assign({},p,{type:"badge"}),Object.assign({},p,{type:"certificate"}),Object.assign({},p,{type:"certificate"}),Object.assign({},p),Object.assign({},p)]}
+if(typeof EMAILJS_CONFIG==="undefined"){w.EMAILJS_CONFIG={publicKey:"HZKiXCtLuEoypVADK",serviceId:"service_mqbft3r",templateId:"template_wa9pj6d"}}
+})();
+</script>
 <script>
 (function(){
 var R=matchMedia("(prefers-reduced-motion: reduce)").matches;
