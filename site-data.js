@@ -32,16 +32,6 @@ const PROJECTS = [
     demo: ""
   },
   {
-    name: "UlamShare App",
-    type: "Mobile application",
-    description: "",
-    image: "",
-    tech: [],
-    status: "",
-    github: "",
-    demo: ""
-  },
-  {
     name: "Future Project",
     type: "Your next application",
     description: "",
