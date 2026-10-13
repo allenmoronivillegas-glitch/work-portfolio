@@ -24,8 +24,8 @@ const PROJECTS = [
   {
     name: "HopeGive App",
     type: "Android / mobile application",
-    description: "",
-    image: "",
+    description: "HopeGive is a mobile giving app project that presents fundraising campaigns for community causes. Its interface highlights initiatives such as tree planting and school supplies for students, with campaign details, progress indicators, and amounts raised.",
+    image: "images/hopegive-app.webp",
     tech: ["Android"],
     status: "",
     github: "",
@@ -55,10 +55,34 @@ const PROJECTS = [
    To add one: copy a { ... } block, paste it with a comma between blocks.
    To remove one: delete its { ... } block. */
 const ACHIEVEMENTS = [
-  { type: "badge",       badge: "", image: "", title: "", description: "", date: "", link: "", linkLabel: "" },
-  { type: "badge",       badge: "", image: "", title: "", description: "", date: "", link: "", linkLabel: "" },
-  { type: "certificate", badge: "", image: "", title: "", description: "", date: "", link: "", linkLabel: "" },
-  { type: "certificate", badge: "", image: "", title: "", description: "", date: "", link: "", linkLabel: "" },
-  { type: "details",     badge: "", image: "", title: "", description: "", date: "", link: "", linkLabel: "" },
-  { type: "details",     badge: "", image: "", title: "", description: "", date: "", link: "", linkLabel: "" }
+  {
+    type: "badge",
+    badge: "images/ms-word-associate-badge.webp",
+    image: "",
+    title: "Microsoft Office Specialist: Word Associate",
+    description: "Microsoft Office Specialist badge for Word Associate in Microsoft 365 Apps.",
+    date: "",
+    link: "",
+    linkLabel: ""
+  },
+  {
+    type: "certificate",
+    badge: "",
+    image: "images/codecraft-expo-2026.webp",
+    title: "CodeCraft Expo 2026 — Certificate of Participation",
+    description: "Recognized for active participation in CodeCraft Expo 2026, including presenting a developed system and showcasing creativity, collaboration, and technical skills.",
+    date: "May 28, 2026",
+    link: "",
+    linkLabel: ""
+  },
+  {
+    type: "certificate",
+    badge: "",
+    image: "images/ai-literacy-responsible-use.webp",
+    title: "Introduction to AI Literacy and Responsible Use",
+    description: "Completed a self-paced micro-credential course on AI literacy and responsible use, involving up to five hours of study and aligned with PQF Level 6 descriptors.",
+    date: "September 15, 2026",
+    link: "",
+    linkLabel: ""
+  }
 ];

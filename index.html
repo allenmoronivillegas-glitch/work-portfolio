@@ -236,13 +236,13 @@ footer{border-top:1px solid var(--line);padding:30px 0 44px;color:var(--muted);f
 </main>
 <footer>Allen Moroni T. Villegas · Digos, Philippines · <a href="https://github.com/allenmoronivillegas-glitch" target="_blank" rel="noopener">GitHub</a></footer>
 
-<script src="site-data.js?v=20261013-2"></script>
+<script src="site-data.js?v=20261013-3"></script>
 <script>
 /* Safety net: if site-data.js was not uploaded next to index.html, show the placeholder
    cards anyway so the page is never empty. Upload site-data.js to your repo to edit them. */
 (function(){var w=window,p={type:"details",badge:"",image:"",title:"",description:"",date:"",link:"",linkLabel:""};
 if(typeof PROJECTS==="undefined"){console.warn("site-data.js not found - using placeholders. Upload it next to index.html.");
-w.PROJECTS=[{name:"HopeGive App",type:"Android / mobile application",description:"",image:"",tech:["Android"],status:"",github:"",demo:""},{name:"Future Project",type:"Your next application",description:"",image:"",tech:[],status:"",github:"",demo:""}]}
+w.PROJECTS=[{name:"HopeGive App",type:"Android / mobile application",description:"HopeGive is a mobile giving app project that presents fundraising campaigns for community causes. Its interface highlights initiatives such as tree planting and school supplies for students, with campaign details, progress indicators, and amounts raised.",image:"images/hopegive-app.webp",tech:["Android"],status:"",github:"",demo:""},{name:"Future Project",type:"Your next application",description:"",image:"",tech:[],status:"",github:"",demo:""}]}
 if(typeof ACHIEVEMENTS==="undefined"){w.ACHIEVEMENTS=[Object.assign({},p,{type:"badge"}),Object.assign({},p,{type:"badge"}),Object.assign({},p,{type:"certificate"}),Object.assign({},p,{type:"certificate"}),Object.assign({},p),Object.assign({},p)]}
 if(typeof EMAILJS_CONFIG==="undefined"){w.EMAILJS_CONFIG={publicKey:"HZKiXCtLuEoypVADK",serviceId:"service_m4j3e2f",templateId:"template_wa9pj6d"}}
 })();
@@ -290,7 +290,7 @@ else bd.innerHTML='<div>'+IC.badge+'Add Your<br>Badge</div>';c.appendChild(bd)}
 if(t==="certificate"){var ct=h("div","shot cert"+(a.image?" has":""));
 if(a.image){var im2=h("img");im2.src=a.image;im2.alt=(a.title||"Certificate");im2.loading="lazy";ct.appendChild(im2)}
 else ct.innerHTML='<div>'+IC.cert+'Add Your Certificate</div>';c.appendChild(ct)}
-c.appendChild(h("span","dt",a.date||"Year / date"));
+if(a.date)c.appendChild(h("span","dt",a.date));
 c.appendChild(h("h3",null,a.title||(t==="details"?"Add Achievement Details":"Achievement title")));
 c.appendChild(h("p","ad"+(a.description?"":" mu"),a.description||"Short description goes here."));
 if(a.link){var pl=h("div","pl");pl.appendChild(lnk(a.linkLabel||"Verify certificate",a.link));c.appendChild(pl)}
