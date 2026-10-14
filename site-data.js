@@ -27,8 +27,8 @@ const PROJECTS = [
     description: "HopeGive is a mobile giving app project that presents fundraising campaigns for community causes. Its interface highlights initiatives such as tree planting and school supplies for students, with campaign details, progress indicators, and amounts raised.",
     image: "images/hopegive-app.webp",
     tech: ["Android"],
-    status: "",
-    github: "",
+    status: "In Development",
+    github: "https://github.com/allenmoronivillegas-glitch/UlamShare",
     demo: ""
   },
   {
