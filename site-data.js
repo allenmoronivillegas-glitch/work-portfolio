@@ -61,9 +61,9 @@ const ACHIEVEMENTS = [
     image: "",
     title: "Microsoft Office Specialist: Word Associate",
     description: "Microsoft Office Specialist badge for Word Associate in Microsoft 365 Apps.",
-    date: "",
-    link: "",
-    linkLabel: ""
+    date: "November 16, 2024",
+    link: "https://www.credly.com/badges/f436e0c9-f0e3-424d-8ccf-31fc4e50659b/public_url",
+    linkLabel: "View Certificate"
   },
   {
     type: "certificate",
@@ -82,7 +82,7 @@ const ACHIEVEMENTS = [
     title: "Introduction to AI Literacy and Responsible Use",
     description: "Completed a self-paced micro-credential course on AI literacy and responsible use, involving up to five hours of study and aligned with PQF Level 6 descriptors.",
     date: "September 15, 2026",
-    link: "",
-    linkLabel: ""
+    link: "https://www.openlearning.com/redirects/ol_notification/?notification_id=28514833&event_type=issued_you_a_certificate&source_id=6aa947a3b6d7f312426848d0&medium=email&cohort=mapua-university/courses/introduction-to-ai-literacy-and-responsible-use/cohorts/classof2026",
+    linkLabel: "View Certificate"
   }
 ];
