@@ -72,8 +72,8 @@ const ACHIEVEMENTS = [
     title: "CodeCraft Expo 2026 — Certificate of Participation",
     description: "Recognized for active participation in CodeCraft Expo 2026, including presenting a developed system and showcasing creativity, collaboration, and technical skills.",
     date: "May 28, 2026",
-    link: "",
-    linkLabel: ""
+    link: "https://docs.google.com/presentation/d/1Ahgq5_r7xPXvhyrOLk0CPQKWsTCh29-XaDObevVNLto/edit?slide=id.p1#slide=id.p1",
+    linkLabel: "View Certificate"
   },
   {
     type: "certificate",
