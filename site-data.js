@@ -26,7 +26,7 @@ const PROJECTS = [
     type: "Android / mobile application",
     description: "HopeGive is a mobile giving app project that presents fundraising campaigns for community causes. Its interface highlights initiatives such as tree planting and school supplies for students, with campaign details, progress indicators, and amounts raised.",
     image: "images/hopegive-app.webp",
-    tech: ["Android"],
+    tech: ["Kotlin", "Android SDK", "Jetpack Compose", "Firebase Authentication", "Cloud Firestore", "Firebase Realtime Database", "Firebase Cloud Messaging", "Google Sign-In", "Facebook Login", "Retrofit", "Glide", "Cloudinary", "Gson"],
     status: "In Development",
     github: "https://github.com/allenmoronivillegas-glitch/UlamShare",
     demo: ""
