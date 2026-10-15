@@ -23,6 +23,7 @@ header .wrap{display:flex;justify-content:space-between;align-items:center}
 header nav{display:flex;gap:6px;background:rgba(0,0,0,.7);backdrop-filter:blur(12px);border:1px solid var(--line);padding:6px;border-radius:999px;font-size:.92rem;font-weight:500}
 header nav a{text-decoration:none;padding:7px 15px;border-radius:999px;color:var(--muted);transition:background .2s,color .2s}
 header nav a:hover{background:rgba(255,255,255,.1);color:var(--ink)}
+header nav a.active{background:rgba(255,176,32,.13);color:var(--p);box-shadow:inset 0 0 0 1px rgba(255,176,32,.2)}
 @media(max-width:620px){header nav a:nth-child(-n+4){display:none}}
 .hero{min-height:88vh;min-height:88svh;display:flex;align-items:center;position:relative;overflow:hidden;padding:110px 0 70px;--mx:50%;--my:40%}
 .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(520px circle at var(--mx) var(--my),rgba(255,176,32,.2),transparent 70%)}
@@ -103,6 +104,12 @@ form button{font:700 .95rem var(--b);color:#000;background:linear-gradient(120de
 form button:hover{transform:translateY(-2px);box-shadow:0 10px 26px -10px var(--v)}
 .note{margin:0;font-size:.85rem;color:var(--muted);min-height:1.2em}
 .prj .card{display:flex;flex-direction:column;gap:14px}
+.js .prj .prj-card{opacity:0;translate:0 18px;transition:opacity .55s ease var(--reveal-delay,0ms),translate .55s cubic-bezier(.2,.8,.2,1) var(--reveal-delay,0ms),border-color .25s,box-shadow .25s,background .25s}
+.js .prj .prj-card.in{opacity:1;translate:0 0}
+.prj .prj-card:hover{border-color:var(--p);box-shadow:0 16px 42px -28px rgba(255,176,32,.65);background:linear-gradient(160deg,rgba(255,176,32,.09),rgba(255,255,255,.025))}
+.prj .shot img{transition:transform .55s cubic-bezier(.2,.8,.2,1)}
+.prj .prj-card:hover .shot img{transform:scale(1.045)}
+
 .shot{aspect-ratio:16/10;border-radius:14px;border:1px dashed var(--line);background:radial-gradient(circle at 30% 20%,rgba(255,176,32,.14),transparent 60%),#0a0a0a;display:grid;place-items:center;text-align:center;color:var(--muted);font-size:.85rem;overflow:hidden}
 .shot svg{width:30px;height:30px;fill:none;stroke:var(--v);stroke-width:1.6;display:block;margin:0 auto 6px}
 .shot img{width:100%;height:100%;object-fit:cover;display:block}
@@ -134,7 +141,7 @@ form button:hover{transform:translateY(-2px);box-shadow:0 10px 26px -10px var(--
 .note.ok{color:#4ade80}.note.err{color:#ff8f8f}.note a{color:inherit;font-weight:700}
 footer{border-top:1px solid var(--line);padding:30px 0 44px;color:var(--muted);font-size:.9rem;text-align:center}
 .js .rv{opacity:0;transform:translateY(34px) scale(.98);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1)}.js .rv.in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){*,*::before{animation:none!important;transition:none!important}h1 .ch{transform:none}.js .rv{opacity:1;transform:none}.tl .fill{transform:none}h1 .ln:last-child{color:var(--p)}html{scroll-behavior:auto}}
+@media(prefers-reduced-motion:reduce){*,*::before{animation:none!important;transition:none!important}h1 .ch{transform:none}.js .rv{opacity:1;transform:none}.js .prj-card{opacity:1;translate:none}.tl .fill{transform:none}h1 .ln:last-child{color:var(--p)}html{scroll-behavior:auto}}
 </style>
 <script>document.documentElement.classList.add("js");setTimeout(function(){[].forEach.call(document.querySelectorAll(".rv"),function(e){e.classList.add("in")})},3500)</script>
 </head>
@@ -265,8 +272,9 @@ setTimeout(tick,d)})();
 function h(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
 function lnk(l,u,pri){var a=h("a",null,l);a.href=u;a.target="_blank";a.rel="noopener";return a}
 var pg=document.getElementById("projects-grid");
-PROJECTS.forEach(function(p){
-var c=h("article","card"),sh=h("div","shot");
+PROJECTS.forEach(function(p,index){
+var c=h("article","card prj-card"),sh=h("div","shot");
+c.style.setProperty("--reveal-delay",(index%3)*90+"ms");
 if(p.image){var im=h("img");im.src=p.image;im.alt=p.name+" screenshot";im.loading="lazy";sh.appendChild(im)}
 else{sh.innerHTML='<div><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>Screenshot coming soon</div>'}
 var top=h("div","pt"),L=h("div"),st=h("span","tag"+(p.status?"":" mu"),p.status||"Status to be added");
@@ -329,10 +337,19 @@ c.addEventListener("pointerleave",function(){c.style.transform=""})});
 function count(b){var n=+b.dataset.n,s=b.dataset.s||"",st=null;if(R){b.textContent=n+s;return}
 (function f(t){if(!st)st=t;var p=Math.min((t-st)/1400,1);b.textContent=Math.round(n*(1-Math.pow(1-p,3)))+(p===1?s:"");if(p<1)requestAnimationFrame(f)})(performance.now())}
 var io=("IntersectionObserver"in window&&!R)?new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;e.target.classList.add("in");e.target.querySelectorAll("[data-n]").forEach(count);io.unobserve(e.target)})},{threshold:.12}):null;
+document.querySelectorAll(".prj-card").forEach(function(c){if(io)io.observe(c);else c.classList.add("in")});
 document.querySelectorAll(".rv").forEach(function(x){if(io)io.observe(x);else{x.classList.add("in");x.querySelectorAll("[data-n]").forEach(count)}});
 var bar=document.getElementById("bar"),fill=document.getElementById("fill"),tl=document.getElementById("tl");
+var navLinks=Array.prototype.slice.call(document.querySelectorAll('header nav a[href^="#"]'));
+var navSections=navLinks.map(function(a){return document.querySelector(a.getAttribute("href"))}).filter(Boolean);
+function updateActiveNav(){
+ var threshold=Math.min(innerHeight*.36,260),current="";
+ navSections.forEach(function(s){if(s.getBoundingClientRect().top<=threshold)current=s.id});
+ navLinks.forEach(function(a){var active=a.getAttribute("href")==="#"+current;a.classList.toggle("active",active);if(active)a.setAttribute("aria-current","location");else a.removeAttribute("aria-current")});
+}
 function sc(){var h=document.documentElement.scrollHeight-innerHeight;bar.style.transform="scaleX("+(h>0?scrollY/h:0)+")";
-if(!R){var r=tl.getBoundingClientRect(),p=Math.max(0,Math.min(1,(innerHeight*.6-r.top)/r.height));fill.style.transform="scaleY("+p+")"}}
+if(!R){var r=tl.getBoundingClientRect(),p=Math.max(0,Math.min(1,(innerHeight*.6-r.top)/r.height));fill.style.transform="scaleY("+p+")"}
+updateActiveNav()}
 addEventListener("scroll",sc,{passive:true});sc();
 })();
 </script>
