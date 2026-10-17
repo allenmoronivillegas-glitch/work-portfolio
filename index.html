@@ -290,7 +290,7 @@ if(typeof EMAILJS_CONFIG==="undefined"){w.EMAILJS_CONFIG={publicKey:"HZKiXCtLuEo
 var R=matchMedia("(prefers-reduced-motion: reduce)").matches;
 document.querySelectorAll("h1 .ln").forEach(function(l,li){
 var t=l.dataset.t;l.textContent="";
-t.split("").forEach(function(c,i){var s=document.createElement("span");s.className="ch";s.textContent=c;s.style.animationDelay=(li*.35+i*.06)+"s";s.setAttribute("aria-hidden","true");l.appendChild(s)})});
+t.split("").forEach(function(c,i){var s=document.createElement("span");s.className="ch";s.textContent=c===" "?"\u00a0":c;s.style.animationDelay=(li*.35+i*.06)+"s";s.setAttribute("aria-hidden","true");l.appendChild(s)})});
 var tools=["Amazon Seller Central","Lead research","Apollo","Google Sheets","Octoparse","Excel","RocketReach","Veeqo","Sales Navigator","Easyship","Kotlin","Dart","PHP"];
 var tr=document.getElementById("track");
 tr.innerHTML=tools.concat(tools).map(function(x){return"<span>"+x+"</span>"}).join("");
