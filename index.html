@@ -150,15 +150,17 @@ form button:hover{transform:translateY(-2px);box-shadow:0 10px 26px -10px var(--
 .note.ok{color:#4ade80}.note.err{color:#ff8f8f}.note a{color:inherit;font-weight:700}
 footer{border-top:1px solid var(--line);padding:30px 0 44px;color:var(--muted);font-size:.9rem;text-align:center}
 .js .rv{opacity:0;transform:translateY(34px) scale(.98);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1)}.js .rv.in{opacity:1;transform:none}
-.gsap-enhanced .js .rv{opacity:1;transform:none;transition:none}
-.gsap-enhanced .js .prj .prj-card{opacity:1;translate:none;transition:border-color .3s,box-shadow .35s,background .35s}
-.gsap-enhanced main section h2{transition:text-shadow .55s ease}
-.gsap-enhanced main section h2.gsap-glow{text-shadow:0 0 26px rgba(255,176,32,.24)}
-.gsap-enhanced .card:not(.prj-card):hover{box-shadow:0 18px 42px -32px rgba(255,176,32,.42)}
-.gsap-enhanced .job:hover{box-shadow:0 14px 36px -28px rgba(255,176,32,.25)}
-.gsap-enhanced .btn{transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .3s,border-color .3s,background .3s}
-.gsap-enhanced .btn:hover{box-shadow:0 10px 32px -14px rgba(255,176,32,.42)}
-@media(prefers-reduced-motion:reduce){.gsap-enhanced main section h2{transition:none;text-shadow:none!important}}
+.gsap-enhanced.js .rv{opacity:1;transform:none;transition:none}
+.gsap-enhanced.js .prj .prj-card{opacity:1;translate:none;transition:border-color .3s,box-shadow .35s,background .35s}
+.gsap-enhanced.js main section h2{position:relative;transition:text-shadow .55s ease}
+.gsap-enhanced.js main section h2::after{content:"";position:absolute;left:0;bottom:-5px;width:58px;height:2px;background:linear-gradient(90deg,var(--v),var(--c));transform:scaleX(0);transform-origin:left center;opacity:.9;transition:transform .65s cubic-bezier(.2,.8,.2,1)}
+.gsap-enhanced.js main section h2.gsap-glow{text-shadow:0 0 26px rgba(255,176,32,.32)}
+.gsap-enhanced.js main section h2.gsap-glow::after{transform:scaleX(1)}
+.gsap-enhanced.js .card:not(.prj-card):hover{box-shadow:0 18px 42px -32px rgba(255,176,32,.42)}
+.gsap-enhanced.js .job:hover{box-shadow:0 14px 36px -28px rgba(255,176,32,.25)}
+.gsap-enhanced.js .btn{transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .3s,border-color .3s,background .3s}
+.gsap-enhanced.js .btn:hover{box-shadow:0 10px 32px -14px rgba(255,176,32,.42)}
+@media(prefers-reduced-motion:reduce){.gsap-enhanced.js main section h2{transition:none;text-shadow:none!important}.gsap-enhanced.js main section h2::after{transition:none}}
 @media(prefers-reduced-motion:reduce){*,*::before{animation:none!important;transition:none!important}h1 .ch{transform:none}.js .rv{opacity:1;transform:none}.js .prj-card{opacity:1;translate:none}.tl .fill{transform:none}h1 .ln:last-child{color:var(--p)}html{scroll-behavior:auto}}
 </style>
 <script>document.documentElement.classList.add("js");setTimeout(function(){[].forEach.call(document.querySelectorAll(".rv"),function(e){e.classList.add("in")})},3500)</script>
@@ -407,6 +409,11 @@ addEventListener("scroll",sc,{passive:true});sc();
           clearProps:"opacity,visibility,transform"
         };
         if (options.scale != null) { from.scale = options.scale; to.scale = 1; }
+        if (options.clip) {
+          from.clipPath = "inset(0 0 72% 0)";
+          to.clipPath = "inset(0 0 0% 0)";
+          to.clearProps = "opacity,visibility,transform,clipPath";
+        }
         if (options.stagger) to.delay = (index % (options.stagger.count || 3)) * options.stagger.step;
         gsap.fromTo(element, from, {
           ...to,
@@ -428,14 +435,18 @@ addEventListener("scroll",sc,{passive:true});sc();
         .fromTo("#hero .btns .btn",{autoAlpha:0,y:16},{autoAlpha:1,y:0,duration:.55,stagger:.09,clearProps:"opacity,visibility,transform"},.28);
 
       /* Scroll-linked reveals for section headings, experience, projects, toolkit and credentials. */
-      revealEach("main section .rv h2, main section .rv .sub",{y:18,duration:.66,stagger:{count:2,step:.09},start:"top 90%"});
-      revealEach("#work .job",{y:26,scale:.992,stagger:{count:3,step:.09}});
-      revealEach(".stats .stat",{y:20,stagger:{count:4,step:.07}});
-      revealEach("#projects-grid .prj-card",{y:28,scale:.985,stagger:{count:3,step:.10}});
-      revealEach("#toolkit .cols > .card",{y:22,scale:.992,stagger:{count:3,step:.07}});
-      revealEach("#ach-grid .ach",{y:22,scale:.992,stagger:{count:3,step:.08}});
-      revealEach(".edu",{y:18});
-      revealEach("#contact .ct > *",{y:22,stagger:{count:2,step:.12}});
+      revealEach("main section .rv h2",{y:28,duration:.82,clip:true,start:"top 93%"});
+      revealEach("main section .rv .sub",{y:18,duration:.68,start:"top 91%"});
+      revealEach("#work .job",{y:34,scale:.985,duration:.78,stagger:{count:3,step:.12}});
+      revealEach(".stats .stat",{y:26,scale:.98,duration:.72,stagger:{count:4,step:.09}});
+      revealEach("#projects-grid .prj-card",{y:38,scale:.975,duration:.86,stagger:{count:3,step:.14}});
+      revealEach("#projects-grid .shot",{y:16,duration:.75});
+      revealEach("#toolkit .cols > .card",{y:28,scale:.985,duration:.76,stagger:{count:3,step:.09}});
+      revealEach("#toolkit .chips span",{y:12,scale:.96,duration:.42,stagger:{count:8,step:.025},start:"top 94%"});
+      revealEach("#ach-grid .ach",{y:28,scale:.985,duration:.78,stagger:{count:3,step:.1}});
+      revealEach(".edu",{y:22,duration:.72});
+      revealEach("#contact .ct > *",{y:30,duration:.8,stagger:{count:2,step:.14}});
+      revealEach("#contact form .f, #contact form button",{y:14,duration:.5,stagger:{count:5,step:.04},start:"top 94%"});
 
       /* Gold light is a soft state change, not a continuously flashing effect. */
       gsap.utils.toArray("main section .rv h2").forEach(function(heading){
