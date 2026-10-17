@@ -109,6 +109,15 @@ form button:hover{transform:translateY(-2px);box-shadow:0 10px 26px -10px var(--
 .prj .prj-card:hover{border-color:var(--p);box-shadow:0 16px 42px -28px rgba(255,176,32,.65);background:linear-gradient(160deg,rgba(255,176,32,.09),rgba(255,255,255,.025))}
 .prj .shot img{transition:transform .55s cubic-bezier(.2,.8,.2,1)}
 .prj .prj-card:hover .shot img{transform:scale(1.045)}
+.prj .prj-card{cursor:pointer;position:relative}
+.prj .prj-card:focus-visible{outline:2px solid var(--v);outline-offset:4px}
+.prj .prj-card .pl{position:relative;z-index:2}
+.prj .prj-card .project-action{display:inline-flex;align-items:center;gap:7px;margin-top:2px;color:var(--p);font-size:.84rem;font-weight:700;letter-spacing:.01em;opacity:.88;transition:opacity .2s,transform .2s}
+.prj .prj-card:hover .project-action,.prj .prj-card:focus-visible .project-action{opacity:1;transform:translateX(3px)}
+.prj .prj-card .project-action svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.8}
+.prj .prj-card.is-opening{animation:projectOpen .32s cubic-bezier(.2,.8,.2,1) both}
+@keyframes projectOpen{50%{transform:scale(.985)}to{transform:scale(1)}}
+@media(prefers-reduced-motion:reduce){.prj .prj-card.is-opening{animation:none}}
 
 .shot{aspect-ratio:16/10;border-radius:14px;border:1px dashed var(--line);background:radial-gradient(circle at 30% 20%,rgba(255,176,32,.14),transparent 60%),#0a0a0a;display:grid;place-items:center;text-align:center;color:var(--muted);font-size:.85rem;overflow:hidden}
 .shot svg{width:30px;height:30px;fill:none;stroke:var(--v);stroke-width:1.6;display:block;margin:0 auto 6px}
@@ -275,6 +284,14 @@ var pg=document.getElementById("projects-grid");
 PROJECTS.forEach(function(p,index){
 var c=h("article","card prj-card"),sh=h("div","shot");
 c.style.setProperty("--reveal-delay",(index%3)*90+"ms");
+var projectUrl=p.demo||p.apk||p.github||"";
+if(projectUrl){
+ c.tabIndex=0;c.setAttribute("role","link");
+ c.setAttribute("aria-label","Open "+p.name+(p.demo?" demo":p.apk?" APK download":" GitHub repository"));
+ var activateProject=function(){if(!projectUrl)return;c.classList.remove("is-opening");void c.offsetWidth;c.classList.add("is-opening");window.open(projectUrl,"_blank","noopener,noreferrer")};
+ c.addEventListener("click",function(ev){if(ev.target.closest("a,button"))return;activateProject()});
+ c.addEventListener("keydown",function(ev){if(ev.target!==c)return;if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();activateProject()}});
+}
 if(p.image){var im=h("img");im.src=p.image;im.alt=p.name+" screenshot";im.loading="lazy";sh.appendChild(im)}
 else{sh.innerHTML='<div><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>Screenshot coming soon</div>'}
 var top=h("div","pt"),L=h("div"),st=h("span","tag"+(p.status?"":" mu"),p.status||"Status to be added");
@@ -285,8 +302,9 @@ c.appendChild(h("p","pd"+(p.description?"":" mu"),p.description||"Short descript
 var ch=h("div","chips");
 if(p.tech&&p.tech.length)p.tech.forEach(function(t){ch.appendChild(h("span",null,t))});else ch.appendChild(h("span",null,"Technologies to be added"));
 c.appendChild(ch);
-if(p.github||p.demo){var pl=h("div","pl");if(p.github)pl.appendChild(lnk("GitHub",p.github));if(p.demo)pl.appendChild(lnk("Live demo",p.demo));c.appendChild(pl)}
+if(p.github||p.demo||p.apk){var pl=h("div","pl");if(p.github)pl.appendChild(lnk("GitHub",p.github));if(p.demo)pl.appendChild(lnk("Live demo",p.demo));if(p.apk)pl.appendChild(lnk("Download APK",p.apk));c.appendChild(pl)}
 else c.appendChild(h("p","sm","Links coming soon"));
+if(projectUrl){var action=h("span","project-action");action.innerHTML='<span>Open project</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8 3l5 5-5 5"/></svg>';c.appendChild(action)}
 pg.appendChild(c)});
 var ag=document.getElementById("ach-grid");
 var IC={badge:'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M8.5 14l-1.5 7 5-3 5 3-1.5-7"/></svg>',cert:'<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M7 9h10M7 12.5h6"/><path d="M15 17l1.5 4 1.5-1.5 2 .5-1-3"/></svg>'};
