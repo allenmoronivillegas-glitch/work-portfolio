@@ -37,8 +37,8 @@ header nav a.active{background:rgba(255,176,32,.13);color:var(--p);box-shadow:in
 h1{font:800 clamp(2.4rem,7vw,4.8rem)/.95 var(--d);letter-spacing:-.035em;margin:0 0 26px}
 h1 .ln{display:block;overflow:hidden;padding-bottom:.08em}
 h1 .ch{display:inline-block;transform:translateY(105%) rotate(6deg);animation:up .9s cubic-bezier(.2,.9,.2,1) forwards}
-h1 .ln:last-child{background:linear-gradient(90deg,var(--v),var(--p),var(--c),var(--v));background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:flow 7s linear infinite}
-h1 .ln:last-child .ch{color:transparent}
+h1 .ln:last-child{background:none;color:var(--p);animation:none}
+h1 .ln:last-child .ch{color:var(--p)}
 @keyframes up{to{transform:none}}
 @keyframes flow{to{background-position:250% 0}}
 .role{font:600 clamp(1rem,2vw,1.3rem) var(--d);min-height:1.5em;margin-bottom:18px}
