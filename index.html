@@ -77,6 +77,8 @@ h2{font:800 clamp(1.6rem,3.4vw,2.3rem)/1.15 var(--d);letter-spacing:-.025em;marg
 .when{color:var(--c);font-weight:700;font-size:.92rem;margin:0 0 16px}
 .job ul{margin:0;padding-left:1.1em}.job li{margin-bottom:7px;color:#d6d6d6}
 .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px;perspective:900px}
+/* Keep project cards equal-height within each grid row. */
+.cols.prj{align-items:stretch;grid-auto-rows:minmax(0,1fr)}
 .card{padding:28px;border-radius:20px;background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.02));border:1px solid var(--line);transition:transform .15s ease-out,border-color .3s;transform-style:preserve-3d}
 .card:hover{border-color:var(--p)}
 .card h3{font:800 1.05rem var(--d);margin:0 0 16px}
@@ -106,17 +108,17 @@ form button:hover{transform:translateY(-2px);box-shadow:0 10px 26px -10px var(--
 .prj .card{display:flex;flex-direction:column;gap:14px}
 .js .prj .prj-card{opacity:0;translate:0 18px;transition:opacity .55s ease var(--reveal-delay,0ms),translate .55s cubic-bezier(.2,.8,.2,1) var(--reveal-delay,0ms)}
 .js .prj .prj-card.in{opacity:1;translate:0 0}
-.prj .prj-card{cursor:pointer;position:relative;padding:0;border:0;background:transparent;box-shadow:none;overflow:visible;perspective:1200px;transform-style:preserve-3d}
+.prj .prj-card{cursor:pointer;position:relative;height:100%;min-height:0;align-self:stretch;padding:0;border:0;background:transparent;box-shadow:none;overflow:visible;perspective:1200px;transform-style:preserve-3d}
 .prj .prj-card:hover{border-color:transparent;box-shadow:none;background:transparent}
 .prj .prj-card:focus-visible{outline:2px solid var(--v);outline-offset:5px;border-radius:22px}
-.prj .prj-flip-inner{display:grid;grid-template-columns:minmax(0,1fr);transform-style:preserve-3d;transition:transform .76s cubic-bezier(.2,.72,.18,1);will-change:transform}
-.prj .prj-face{grid-area:1/1;display:flex;flex-direction:column;gap:14px;min-width:0;padding:28px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.02));backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+.prj .prj-flip-inner{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr);height:100%;min-height:100%;transform-style:preserve-3d;transition:transform .76s cubic-bezier(.2,.72,.18,1);will-change:transform}
+.prj .prj-face{grid-area:1/1;display:flex;flex-direction:column;gap:14px;height:100%;min-height:100%;min-width:0;padding:28px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.02));backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
 .prj .prj-back{transform:rotateY(180deg);justify-content:center;background:radial-gradient(circle at 85% 15%,rgba(255,176,32,.16),transparent 42%),linear-gradient(155deg,rgba(255,255,255,.08),rgba(255,255,255,.025))}
 .prj .prj-card.is-flipped .prj-flip-inner{transform:rotateY(180deg)}
 .prj .prj-card:hover .prj-face{border-color:rgba(255,209,102,.72);box-shadow:0 16px 42px -28px rgba(255,176,32,.5)}
 .prj .shot img{transition:transform .55s cubic-bezier(.2,.8,.2,1)}
 .prj .prj-card:hover .shot img{transform:scale(1.045)}
-.prj .prj-card .project-action{display:inline-flex;align-items:center;gap:7px;margin-top:2px;color:var(--p);font-size:.84rem;font-weight:700;letter-spacing:.01em;opacity:.88;transition:opacity .2s,transform .2s}
+.prj .prj-card .project-action{display:inline-flex;align-items:center;gap:7px;margin-top:auto;padding-top:2px;color:var(--p);font-size:.84rem;font-weight:700;letter-spacing:.01em;opacity:.88;transition:opacity .2s,transform .2s}
 .prj .prj-card:hover .project-action,.prj .prj-card:focus-visible .project-action{opacity:1;transform:translateX(3px)}
 .prj .prj-card .project-action svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.8}
 .prj .project-back-kicker{font-size:.78rem;font-weight:800;letter-spacing:.12em;color:var(--v);text-transform:uppercase}
