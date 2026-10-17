@@ -19,7 +19,7 @@ const EMAILJS_CONFIG = {
    image : path or URL of a screenshot, e.g. "images/hopegive.png" ("" = placeholder)
    tech  : list of technologies, e.g. ["Flutter", "Dart", "Firebase"] ([] = placeholder)
    status: e.g. "In development", "Prototype", "Published" ("" = placeholder)
-   github / demo: full links, or "" to hide the button */
+   github / demo / apk: full links; leave demo or apk as "" until ready */
 const PROJECTS = [
   {
     name: "HopeGive App",
@@ -29,7 +29,8 @@ const PROJECTS = [
     tech: ["Kotlin", "Android SDK", "Firebase Authentication", "Cloud Firestore", "Firebase Realtime Database", "Push Notifications", "Cloudinary"],
     status: "In Development",
     github: "https://github.com/allenmoronivillegas-glitch/UlamShare",
-    demo: ""
+    demo: "",
+    apk: ""
   },
   {
     name: "EventEase",
@@ -39,7 +40,8 @@ const PROJECTS = [
     tech: ["Flutter", "Dart", "Firebase Authentication", "Cloud Firestore", "Firebase Realtime Database"],
     status: "In Development",
     github: "https://github.com/allenmoronivillegas-glitch/eventease",
-    demo: ""
+    demo: "",
+    apk: ""
   }
 ];
 
