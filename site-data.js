@@ -36,7 +36,7 @@ const PROJECTS = [
     name: "EventEase",
     type: "Flutter mobile app and web admin interface",
     description: "EventEase is an event management project with separate organizer and attendee experiences. It includes authentication, event creation and management workflows, and Firebase-backed data integration, with a companion web admin interface.",
-    image: "",
+    image: "images/eventease-dashboard-showcase.webp",
     tech: ["Flutter", "Dart", "Firebase Authentication", "Cloud Firestore", "Firebase Realtime Database"],
     status: "In Development",
     github: "https://github.com/allenmoronivillegas-glitch/eventease",
