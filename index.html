@@ -104,20 +104,29 @@ form button{font:700 .95rem var(--b);color:#000;background:linear-gradient(120de
 form button:hover{transform:translateY(-2px);box-shadow:0 10px 26px -10px var(--v)}
 .note{margin:0;font-size:.85rem;color:var(--muted);min-height:1.2em}
 .prj .card{display:flex;flex-direction:column;gap:14px}
-.js .prj .prj-card{opacity:0;translate:0 18px;transition:opacity .55s ease var(--reveal-delay,0ms),translate .55s cubic-bezier(.2,.8,.2,1) var(--reveal-delay,0ms),border-color .25s,box-shadow .25s,background .25s}
+.js .prj .prj-card{opacity:0;translate:0 18px;transition:opacity .55s ease var(--reveal-delay,0ms),translate .55s cubic-bezier(.2,.8,.2,1) var(--reveal-delay,0ms)}
 .js .prj .prj-card.in{opacity:1;translate:0 0}
-.prj .prj-card:hover{border-color:var(--p);box-shadow:0 16px 42px -28px rgba(255,176,32,.65);background:linear-gradient(160deg,rgba(255,176,32,.09),rgba(255,255,255,.025))}
+.prj .prj-card{cursor:pointer;position:relative;padding:0;border:0;background:transparent;box-shadow:none;overflow:visible;perspective:1200px;transform-style:preserve-3d}
+.prj .prj-card:hover{border-color:transparent;box-shadow:none;background:transparent}
+.prj .prj-card:focus-visible{outline:2px solid var(--v);outline-offset:5px;border-radius:22px}
+.prj .prj-flip-inner{display:grid;grid-template-columns:minmax(0,1fr);transform-style:preserve-3d;transition:transform .76s cubic-bezier(.2,.72,.18,1);will-change:transform}
+.prj .prj-face{grid-area:1/1;display:flex;flex-direction:column;gap:14px;min-width:0;padding:28px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.02));backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+.prj .prj-back{transform:rotateY(180deg);justify-content:center;background:radial-gradient(circle at 85% 15%,rgba(255,176,32,.16),transparent 42%),linear-gradient(155deg,rgba(255,255,255,.08),rgba(255,255,255,.025))}
+.prj .prj-card.is-flipped .prj-flip-inner{transform:rotateY(180deg)}
+.prj .prj-card:hover .prj-face{border-color:rgba(255,209,102,.72);box-shadow:0 16px 42px -28px rgba(255,176,32,.5)}
 .prj .shot img{transition:transform .55s cubic-bezier(.2,.8,.2,1)}
 .prj .prj-card:hover .shot img{transform:scale(1.045)}
-.prj .prj-card{cursor:pointer;position:relative}
-.prj .prj-card:focus-visible{outline:2px solid var(--v);outline-offset:4px}
-.prj .prj-card .pl{position:relative;z-index:2}
 .prj .prj-card .project-action{display:inline-flex;align-items:center;gap:7px;margin-top:2px;color:var(--p);font-size:.84rem;font-weight:700;letter-spacing:.01em;opacity:.88;transition:opacity .2s,transform .2s}
 .prj .prj-card:hover .project-action,.prj .prj-card:focus-visible .project-action{opacity:1;transform:translateX(3px)}
 .prj .prj-card .project-action svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.8}
-.prj .prj-card.is-opening{animation:projectOpen .32s cubic-bezier(.2,.8,.2,1) both}
-@keyframes projectOpen{50%{transform:scale(.985)}to{transform:scale(1)}}
-@media(prefers-reduced-motion:reduce){.prj .prj-card.is-opening{animation:none}}
+.prj .project-back-kicker{font-size:.78rem;font-weight:800;letter-spacing:.12em;color:var(--v);text-transform:uppercase}
+.prj .prj-back h3{font:800 clamp(1.2rem,2vw,1.55rem)/1.2 var(--d);margin:0}
+.prj .project-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:8px}
+.prj .project-link{display:inline-flex;justify-content:center;align-items:center;min-height:44px;padding:10px 12px;border:1px solid rgba(255,176,32,.3);border-radius:12px;background:rgba(255,176,32,.09);color:var(--ink);text-align:center;text-decoration:none;font-size:.88rem;font-weight:700;transition:transform .2s,border-color .2s,background .2s,box-shadow .2s}
+.prj a.project-link:hover{transform:translateY(-2px);border-color:var(--v);background:rgba(255,176,32,.18);box-shadow:0 8px 24px -16px rgba(255,176,32,.75)}
+.prj .project-link.disabled{border-color:var(--line);background:rgba(255,255,255,.025);color:#777;cursor:not-allowed}
+.prj .project-back-hint{color:var(--muted);font-size:.82rem;margin-top:6px}
+@media(max-width:520px){.prj .prj-face{padding:21px}.prj .project-links{grid-template-columns:1fr}}
 
 .shot{aspect-ratio:16/10;border-radius:14px;border:1px dashed var(--line);background:radial-gradient(circle at 30% 20%,rgba(255,176,32,.14),transparent 60%),#0a0a0a;display:grid;place-items:center;text-align:center;color:var(--muted);font-size:.85rem;overflow:hidden}
 .shot svg{width:30px;height:30px;fill:none;stroke:var(--v);stroke-width:1.6;display:block;margin:0 auto 6px}
@@ -293,29 +302,49 @@ function h(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)
 function lnk(l,u,pri){var a=h("a",null,l);a.href=u;a.target="_blank";a.rel="noopener";return a}
 var pg=document.getElementById("projects-grid");
 PROJECTS.forEach(function(p,index){
-var c=h("article","card prj-card"),sh=h("div","shot");
+var c=h("article","card prj-card"),flip=h("div","prj-flip-inner"),front=h("div","prj-face prj-front"),back=h("div","prj-face prj-back"),sh=h("div","shot");
 c.style.setProperty("--reveal-delay",(index%3)*90+"ms");
-var projectUrl=p.demo||p.apk||p.github||"";
-if(projectUrl){
- c.tabIndex=0;c.setAttribute("role","link");
- c.setAttribute("aria-label","Open "+p.name+(p.demo?" demo":p.apk?" APK download":" GitHub repository"));
- var activateProject=function(){if(!projectUrl)return;c.classList.remove("is-opening");void c.offsetWidth;c.classList.add("is-opening");window.open(projectUrl,"_blank","noopener,noreferrer")};
- c.addEventListener("click",function(ev){if(ev.target.closest("a,button"))return;activateProject()});
- c.addEventListener("keydown",function(ev){if(ev.target!==c)return;if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();activateProject()}});
+c.tabIndex=0;c.setAttribute("role","button");c.setAttribute("aria-pressed","false");
+c.setAttribute("aria-label","Flip "+p.name+" card to view project links");
+front.setAttribute("aria-hidden","false");back.setAttribute("aria-hidden","true");back.inert=true;
+function flipCard(){
+ var flipped=c.classList.toggle("is-flipped");
+ c.setAttribute("aria-pressed",String(flipped));
+ c.setAttribute("aria-label",flipped?"Show details for "+p.name:"Flip "+p.name+" card to view project links");
+ front.setAttribute("aria-hidden",String(flipped));front.inert=flipped;
+ back.setAttribute("aria-hidden",String(!flipped));back.inert=!flipped;
 }
+c.addEventListener("click",function(ev){if(ev.target.closest("a,button"))return;flipCard()});
+c.addEventListener("keydown",function(ev){if(ev.target!==c)return;if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();flipCard()}});
 if(p.image){var im=h("img");im.src=p.image;im.alt=p.name+" screenshot";im.loading="lazy";sh.appendChild(im)}
 else{sh.innerHTML='<div><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>Screenshot coming soon</div>'}
 var top=h("div","pt"),L=h("div"),st=h("span","tag"+(p.status?"":" mu"),p.status||"Status to be added");
 L.appendChild(h("h3",null,p.name));if(p.type)L.appendChild(h("p","sm",p.type));
 top.appendChild(L);top.appendChild(st);
-c.appendChild(sh);c.appendChild(top);
-c.appendChild(h("p","pd"+(p.description?"":" mu"),p.description||"Short description coming soon."));
+front.appendChild(sh);front.appendChild(top);
+front.appendChild(h("p","pd"+(p.description?"":" mu"),p.description||"Short description coming soon."));
 var ch=h("div","chips");
 if(p.tech&&p.tech.length)p.tech.forEach(function(t){ch.appendChild(h("span",null,t))});else ch.appendChild(h("span",null,"Technologies to be added"));
-c.appendChild(ch);
-if(p.github||p.demo||p.apk){var pl=h("div","pl");if(p.github)pl.appendChild(lnk("GitHub",p.github));if(p.demo)pl.appendChild(lnk("Live demo",p.demo));if(p.apk)pl.appendChild(lnk("Download APK",p.apk));c.appendChild(pl)}
-else c.appendChild(h("p","sm","Links coming soon"));
-if(projectUrl){var action=h("span","project-action");action.innerHTML='<span>Open project</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8 3l5 5-5 5"/></svg>';c.appendChild(action)}
+front.appendChild(ch);
+var action=h("span","project-action");action.innerHTML='<span>Click to view demo & APK options</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8 3l5 5-5 5"/></svg>';front.appendChild(action);
+
+back.appendChild(h("span","project-back-kicker","Project links"));
+back.appendChild(h("h3",null,p.name));
+back.appendChild(h("p","pd","Choose a link to explore the project or download its APK."));
+var actions=h("div","project-links");
+function projectLink(label,url){
+ if(url){var a=lnk(label,url);a.className="project-link";if(label==="Download APK")a.setAttribute("download","");return a}
+ var placeholder=h("span","project-link disabled",label);
+ placeholder.setAttribute("aria-disabled","true");
+ placeholder.title="Add a URL for this project in site-data.js to enable this button";
+ return placeholder;
+}
+actions.appendChild(projectLink("Live Demo",p.demo||""));
+actions.appendChild(projectLink("Download APK",p.apk||""));
+if(p.github)actions.appendChild(projectLink("GitHub Repository",p.github));
+back.appendChild(actions);
+back.appendChild(h("span","project-back-hint","Click the card to flip back"));
+flip.appendChild(front);flip.appendChild(back);c.appendChild(flip);
 pg.appendChild(c)});
 var ag=document.getElementById("ach-grid");
 var IC={badge:'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M8.5 14l-1.5 7 5-3 5 3-1.5-7"/></svg>',cert:'<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M7 9h10M7 12.5h6"/><path d="M15 17l1.5 4 1.5-1.5 2 .5-1-3"/></svg>'};
@@ -360,7 +389,7 @@ say("Sorry, your message could not be sent.","err",true)
 });
 var hero=document.getElementById("hero");
 if(!R)hero.addEventListener("pointermove",function(e){var r=hero.getBoundingClientRect();hero.style.setProperty("--mx",(e.clientX-r.left)+"px");hero.style.setProperty("--my",(e.clientY-r.top)+"px")});
-if(!R&&matchMedia("(hover:hover)").matches)document.querySelectorAll(".card").forEach(function(c){
+if(!R&&matchMedia("(hover:hover)").matches)document.querySelectorAll(".card:not(.prj-card)").forEach(function(c){
 c.addEventListener("pointermove",function(e){var r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform="rotateY("+x*10+"deg) rotateX("+-y*10+"deg) translateZ(6px)"});
 c.addEventListener("pointerleave",function(){c.style.transform=""})});
 function count(b){var n=+b.dataset.n,s=b.dataset.s||"",st=null;if(R){b.textContent=n+s;return}
